@@ -1,16 +1,40 @@
-## Create `.env` file
+## What are we building you may ask?
 
-Let’s use `.env` file to store all the secrets and important keys related to your project so we can access this data whenever and wherever.
+![The Video of the VoteChainProduct]()
 
-Create a file named `.env` in the folder `one-piece-dapp` and copy the following data in the file:
+As stated before in Module1, We are building a voting system called VoteChain (You can call it whatever you want really). This will have the functionalities of both the creating proposals, requesting for voting stake tokens and also vote for people.
+
+Let us create our own project, Run this command so create a project:
 
 ```
-PRIVATE_KEY=<your-private-key>
-SUB_ID=<your-chainlink-vrf-subscription-id>
-VRF_ADDRESS=<your-chainlink-vrf_address-id>
-KEY_HASH=<your-chainlink-key_hash-id>
-API_KEY=<your-abiscan-api>
+mkdir starknet_voting && cd starknet_voting
+scarb init
 ```
+This should pop up on your terminal: 
+
+![scarb_init_preview](../assets/scarb_init.png)
+
+This will create your cairo project for you. Then we can make use of our favorite code editor. For VSCode users, there should be an extension to install to make use of the syntax highlighting and autocompletion.
+
+But for my Neovim Chads
+
+[Chads]('../assets/chad.gif')
+
+You may have to find a way to setup your lspconfig. Be the chad you are. 
+
+Now your project repo tree should be similar to this:
+
+```
+.
+├── Scarb.lock
+├── Scarb.toml
+├── snfoundry.toml
+├── src
+│   └── lib.cairo
+└── tests
+    └── test_contract.cairo
+```
+
 
 - If a `gitignore` file is not created, create a file named `.gitignore` file in the folder `one-piece-dapp`. In the `gitignore` file, we’ll simply write `.env`, so that it tells git to ignore that file from future commits. And we do not accidentally push our secret data to the public.
 

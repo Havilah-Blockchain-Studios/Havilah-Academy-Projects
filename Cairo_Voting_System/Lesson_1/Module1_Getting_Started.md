@@ -5,6 +5,16 @@ Hello everyone! We have set up our project. This series will walk you though all
 Now there are many resources to be able to setup starkup in your local environment.
 There are [Starknet Docs](https://docs.starknet.io/guides/quickstart/environment-setup/) and [Cairo Book](https://book.cairo-lang.org/ch01-01-installation.html)
 
+
+
+Also you must have experience with Rust syntax and concepts like borrowing and ownerships.
+
+![Side eye](../assets/side-eye.gif)
+
+
+
+# Installation Process
+
 To make this easy for us, I have placed the command below to run to setup starkup on Linux or MacOs:
 
 ```
