@@ -18,7 +18,7 @@ This will create your cairo project for you. Then we can make use of our favorit
 
 But for my Neovim Chads
 
-![Chads]('../assets/chad.gif')
+![Chads]('../assets/chad.gif)
 
 You may have to find a way to setup your lspconfig. Be the chad you are. 
 
