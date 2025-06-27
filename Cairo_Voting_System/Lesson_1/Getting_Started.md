@@ -84,7 +84,7 @@ starknet-devnet --version
 
 Not Bad Aye?
 
-![thumbs-up](https://github.com/Havilah-Blockchain-Studios/Havilah-Academy-Projects/Cairo_Voting_System/assets/thumbs-up-elon.gif?raw=true)
+![thumbs-up](../assets/thumbs-up-elon.gif)
 
 Congratulations you have passed the stage of installing and setting up starknet on your local machine. Next?
 You should go tp the next module of this chapter.
