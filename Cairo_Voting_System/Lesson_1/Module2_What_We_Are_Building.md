@@ -1,4 +1,4 @@
-## What are we building you may ask?
+# What are we building you may ask?
 
 ![The Video of the VoteChainProduct]()
 
@@ -18,9 +18,11 @@ This will create your cairo project for you. Then we can make use of our favorit
 
 But for my Neovim Chads
 
-[Chads]('../assets/chad.gif')
+![Chads]('../assets/chad.gif')
 
 You may have to find a way to setup your lspconfig. Be the chad you are. 
+
+## Project Structure
 
 Now your project repo tree should be similar to this:
 
@@ -34,98 +36,46 @@ Now your project repo tree should be similar to this:
 └── tests
     └── test_contract.cairo
 ```
+The `src` folder is where the main file is while the `tests` folder is where you will write your tests for the smart contract. Now Cairo is different from other languages where testing is what I believe is the main concept behind Cairo smart contracts. If your tests fails, your smart contract can deploy but the functionalities will be defeated.
+
+## Deep Dive Into Cairo
+
+![Lib file](../assets/lib_cairo.png)
+
+The `lib.cairo` is our main function where the smart contract lives in. Now looking at this file may be very confusing but not worry, I am here to guide you all the way.
+
+Now the folder is divided into two sections, The interface and the contract section.
+
+![interface](../assets/interface.png) ![contract](../assets/contract.png)
+
+The interface section is the list of functions for the smart contract to run in the main file. It is exactly like interfaces in other languages like Golang and Rust. The contract section is as the name implies, the main file which the contract is ran on.
+
+### Interface section
+
+![interface](../assets/interface.png)
+
+This section is a `trait` type which contains only has two functions in them which are 
+
+```
+    fn increase_balance(ref self: TContractState, amount: felt252);
+    fn get_balance(self: @TContractState) -> felt252;
+```
+
+The `increase_balance` takes in two arguments: `ref self: TContractState` and `amount: felt252`. `ref` in Cairo means mutable value which should be known from Rust. Mutable values are values that can be changed in the memory. Cairo makes use of `ref` instead of `mut`. There is also `felt252` which is Cairo default value for string or BigInt values. `felt252` is best used for values with string type and also you want to make use of `u128`.
+
+Now you must have noticed the elephant in the room: `TContractState` and `@TContractState`. These are the types for the storage values which can be accessed all through the contract. The `@` in place of the TContractState are for variables that can not be changed only read. If noticed `ref` is used with only `TContractState` and not `@TContractState` because one indicates that the one with ref can be read and overwritten while the one with `@` can only be read. Also `ref` can only be used without the `@` in the type
+
+![head_ache](../assets/head_hurts.gif)
+
+I know I know that was a lot to take in. But it will all make sense when we start coding.
+
+### Contract section
+
+![contract](../assets/contract.png)
+
+As the name implies, This is where the main contract lies, where we can be able to input the functions we had specified on the traits. Having little knowledge on Rust should make you guess what we are doing in this section. We have a `trait` so we should just implement this into our contract to be able to make use of the section.
+
+For my Typescript developers, It is like creating a interface and say that a particular class implememts the functions called in that interface. Makes more sense?.
 
 
-- If a `gitignore` file is not created, create a file named `.gitignore` file in the folder `one-piece-dapp`. In the `gitignore` file, we’ll simply write `.env`, so that it tells git to ignore that file from future commits. And we do not accidentally push our secret data to the public.
-
-## Get your private MetaMask key
-
-While writing and deploying your contract you sign off each contract with your private key to tell the blockchain that you are a legit person creating a real transaction. Now if that private key is made visible, the hackers can gain access to your account and then the rest will be history.
-
-1. Open the MetaMask extension to find your private key. 
-2. Click on Account.
-3. Click on the three dots on the right side and go to “Account Details”.
-4. Click on “Show private key”.
-5. Enter MetaMask password.
-6. Copy your private key.
-7. Replace `<your-private-key>` with your private key in the `.env` file.
-    
-    ![reveasl-privatekey.gif](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/reveasl-privatekey.webp?raw=true)
-    
-
-## AbI scan API key
-
-Now you need to have an API so follow the steps given below:
-
-- Head over to [https://arbiscan.io/](https://arbiscan.io/).
-- Login or signup to Abiscan. If you are signing up, make sure to verify your email address.
-- After logging in, go to “API-KEYs” on the left navigation bar.
-- If you don’t have an API key. Generate one by clicking on “+Add” button and giving an app name such as “one-piece-dapp”.
-- After generating the key, copy your Api-Key Token.
-    
-    ![abiscan.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/abiscan.webp?raw=true)
-    
-- Replace `<your-abiscan-api>` with yours in the `.env` file.
-
-## Chainlink
-
-Follow the steps given below:
-
-- Head over to [https://vrf.chain.link/arbitrum-sepolia](https://vrf.chain.link/arbitrum-sepolia).
-- Click on “Connect wallet” and connect your MetaMask wallet.
-- Copy “VRF Coordinator” and replace `<your-chainlink-vrf_address-id>` with yours in the `.env` file. I have pointed out the address in the following image for your ease.
-    
-    ![chainlink-1.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-1.webp?raw=true)
-    
-
-- Copy the “Key Hash” address and replace `<your-chainlink-key_hash-id>` with yours in the `.env` file. I have pointed out the hash in the following image for your ease.
-    
-    ![chainlink-2.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-2.webp?raw=true)
-    
-
-### Create subscription
-
-- Next, click on Create Subscription:
-    - Click on the “Create Subscription” button.
-        
-        ![chainlink-3.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-3.webp?raw=true)
-        
-    - Sign the transaction.
-    - Confirm the transaction.
-        
-        ![chainlink-3.gif](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-3.webp?raw=true)
-        
-    - Wait for a few seconds. Click on the “Add Funds” pop-up but move to the home page without adding any link.
-- Now go back to “Home”. Under “My Subscriptions”, you’ll find the subscription you created just yet. Click on it and copy the subscription ID.
-    
-    ![chainlink-4.gif](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-4.webp?raw=true)
-    
-- Replace `<your-chainlink-vrf-subscription-id>` with your ID in the `.env` file.
-    
-    ![chainlink-5.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/chainlink-5.webp?raw=true)
-    
-### Fund your subscription
-
-Now, we need to fund our subscription. Without adding funds to the subscription ID, you may face errors.
-
-1. Click on the “Action” button present on the Subscription page.
-2. Click on the “Fund Subscription” option.
-    
-    ![fund-subscription-1.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/fund-subscription-1.webp?raw=true)
-    
-3. Click on “Visit the Chainlink Arbitrum Sepolia Faucet” link and request “25 test LINK”.
-    
-    ![fund-subscription-3.gif](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/fund-subscription-3.webp?raw=true)
-    
-4. Go back to Subscription page and enter 15 in the “Add Funds (LINK)” field and click on “Confirm” button.
-    
-    ![fund-subscription-4.png](https://github.com/0xmetaschool/Learning-Projects/blob/main/assests_for_all/one-piece-dapp/Secure%20Your%20Data/fund-subscription-4.webp?raw=true)
-    
-Awesome, setting all of this was a lot but you did great! Now, you are all set up to start writing the code!
-
-## Wrap up
-
-In this lesson, we have learned how to secure our data using a `.env` file. Then we fetched the required data and utilized MetaMask wallet, Arbitrum faucet, ABIscan API, and Chainlink for that. 
-
-Now that our development environment is ready, we can move on to building our dApp. Stay tuned for the next adventure!
-
+I believe I have spoke too much. Lets just dive into the coding.
