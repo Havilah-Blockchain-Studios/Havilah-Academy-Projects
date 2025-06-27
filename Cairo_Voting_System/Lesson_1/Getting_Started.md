@@ -3,13 +3,12 @@
 Hello everyone! We have set up our project. This series will walk you though all the steps necessary to deploy your very own voting system which include being able to create proposals, vote for proposals and also be able to request tokens to be used for staking. There are a lot of prerequisites needed to be able to set up Starknet in your local machine for both developments and deployments. 
 
 Now there are many resources to be able to setup starkup in your local environment.
-There are ![Starknet Docs](https://docs.starknet.io/guides/quickstart/environment-setup/) and ![Cairo Book](https://book.cairo-lang.org/ch01-01-installation.html)
+There are [Starknet Docs](https://docs.starknet.io/guides/quickstart/environment-setup/) and [Cairo Book](https://book.cairo-lang.org/ch01-01-installation.html)
 
 To make this easy for us, I have placed the command below to run to setup starkup on Linux or MacOs:
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.starkup.sh | sh
-
 ```
 You can verify that Scarb and Starknet Foundry are installed correctly by running:
 
@@ -85,7 +84,7 @@ starknet-devnet --version
 
 Not Bad Aye?
 
-![thumbs-up](https://github.com/Havilah-Blockchain-Studios/Havilah-Academy-Projects/Cairo_Voting_System/assets/thumbs-up-elon.gif)
+![thumbs-up](https://github.com/Havilah-Blockchain-Studios/Havilah-Academy-Projects/Cairo_Voting_System/assets/thumbs-up-elon.gif?raw=true)
 
 Congratulations you have passed the stage of installing and setting up starknet on your local machine. Next?
 You should go tp the next module of this chapter.
